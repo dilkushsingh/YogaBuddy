@@ -39,19 +39,7 @@ YogaBuddy is a user-friendly assistant focused on the Sun Salutation (Surya Nama
     pip install -r requirements.txt
     ```
 
-4. **Download data and models**:
-    - Data: [YogaBuddy Dataset on Kaggle](https://www.kaggle.com/datasets/dilkushsingh/yogabuddy-data)
-    - Models: [YogaBuddy Models on Hugging Face](https://huggingface.co/dilkushsingh/YogaBuddy-models)
-    - Place the downloaded data in the `data` folder and the models in the `models` folder as follows:
-        ```
-        YogaBuddy/
-        ├── data/
-        │   ├── <dataset_files>
-        ├── models/
-        │   ├── <model_files>
-        ```
-
-5. **Run the Streamlit app**:
+4. **Run the Streamlit app**:
     ```bash
     streamlit run app.py
     ```
@@ -81,12 +69,12 @@ MediaPipe is used for real-time keypoint detection, which supports both classifi
 
 ## Dependencies
 
-- [Streamlit](https://streamlit.io/) - App interface development.
-- [OpenCV](https://opencv.org/) - Image and video processing.
-- [MediaPipe](https://mediapipe.dev/) - Keypoint detection.
-- [TensorFlow](https://www.tensorflow.org/) - For training image-based models.
-- [XGBoost](https://xgboost.ai/) - For real-time pose classification in the app.
-- [scikit-learn (sklearn)](https://scikit-learn.org/stable/) - For KNN-based pose classification.
+- **Streamlit** - App interface development.
+- **OpenCV** - Image and video processing.
+- **MediaPipe** - Keypoint detection.
+- **TensorFlow** - For training image-based models.
+- **XGBoost** - For real-time pose classification in the app.
+- **scikit-learn** - For KNN-based pose classification.
 - Refer to `requirements.txt` for the complete list of dependencies.
 
 ## Future Enhancements
