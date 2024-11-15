@@ -1,0 +1,76 @@
+{
+    "poses": [
+        {
+            "english_name": "Pranamasana (Prayer Pose)",
+            "hindi_name": "प्रणामासन",
+            "image": "data/sun_salutation_poses/steps/s1.jpg",
+            "description": "Stand at the edge of your mat, keeping your feet together. Join your palms together in front of your chest in a prayer position."
+        },
+        {
+            "english_name": "Hasta Uttanasana (Raised Arms Pose)",
+            "hindi_name": "हस्त उत्तानासन",
+            "image": "data/sun_salutation_poses/steps/s2.jpg",
+            "description": "Raise your arms up and back, keeping your biceps close to your ears. Stretch your whole body upward."
+        },
+        {
+            "english_name": "Uttanasana (Standing Forward Bend)",
+            "hindi_name": "उत्तानासन",
+            "image": "data/sun_salutation_poses/steps/s3.jpg",
+            "description": "Bend forward from the hips, keeping your spine straight and your palms beside your feet."
+        },
+        {
+            "english_name": "Ashwa Sanchalanasana (Equestrian Pose)",
+            "hindi_name": "अश्व संचलनासन",
+            "image": "data/sun_salutation_poses/steps/s4.jpg",
+            "description": "Step your right leg back, keeping your left foot between your hands. Look forward with your spine elongated."
+        },
+        {
+            "english_name": "Parvatasana (Mountain Pose)",
+            "hindi_name": "पर्वतासन",
+            "image": "data/sun_salutation_poses/steps/s5.jpg",
+            "description": "Bring your left leg back and lift your hips, forming an inverted V-shape with your body."
+        },
+        {
+            "english_name": "Ashtanga Namaskara (Eight-Limbed Pose)",
+            "hindi_name": "अष्टांग नमस्कार",
+            "image": "data/sun_salutation_poses/steps/s6.jpg",
+            "description": "Lower your knees, chest, and chin to the ground, keeping your hips slightly raised."
+        },
+        {
+            "english_name": "Bhujangasana (Cobra Pose)",
+            "hindi_name": "भुजंगासन",
+            "image": "data/sun_salutation_poses/steps/s7.jpg",
+            "description": "Slide forward and raise your chest up into a gentle backbend, keeping your elbows bent."
+        },
+        {
+            "english_name": "Parvatasana (Mountain Pose)",
+            "hindi_name": "पर्वतासन",
+            "image": "data/sun_salutation_poses/steps/s8.jpg",
+            "description": "Lift your hips again, returning to the inverted V-shape."
+        },
+        {
+            "english_name": "Ashwa Sanchalanasana (Equestrian Pose)",
+            "hindi_name": "अश्व संचलनासन",
+            "image": "data/sun_salutation_poses/steps/s9.jpg",
+            "description": "Step your right foot forward between your hands, keeping your left knee on the ground and looking forward."
+        },
+        {
+            "english_name": "Uttanasana (Standing Forward Bend)",
+            "hindi_name": "उत्तानासन",
+            "image": "data/sun_salutation_poses/steps/s10.jpg",
+            "description": "Bring your left foot forward to join the right, and bend forward from the hips with your palms beside your feet."
+        },
+        {
+            "english_name": "Hasta Uttanasana (Raised Arms Pose)",
+            "hindi_name": "हस्त उत्तानासन",
+            "image": "data/sun_salutation_poses/steps/s11.jpg",
+            "description": "Raise your arms up and back, keeping your biceps close to your ears and stretching your whole body upward."
+        },
+        {
+            "english_name": "Pranamasana (Prayer Pose)",
+            "hindi_name": "प्रणामासन",
+            "image": "data/sun_salutation_poses/steps/s12.jpg",
+            "description": "Bring your arms down and join your palms together in front of your chest, returning to a prayer position."
+        }
+    ]
+}
