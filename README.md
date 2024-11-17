@@ -8,6 +8,7 @@ YogaBuddy is an AI-powered yoga assistant designed to help users practice Sun Sa
 - [Getting Started](#getting-started)
 - [Model Overview](#model-overview)
 - [Model Details](#model-details)
+- [Classification Reports](#classification-reports)
 - [Dependencies](#dependencies)
 - [Future Enhancements](#future-enhancements)
 - [Contributions](#contributions)
@@ -66,6 +67,22 @@ YogaBuddy integrates multiple models trained on pose data, including:
 ### Keypoint Detection
 
 MediaPipe is used for real-time keypoint detection, which supports both classification and angle-based feedback. This enables precise evaluation and alignment correction for users practicing poses.
+
+## Classification Reports
+
+Below are the confusion matrices for the four classification models trained on the Sun Salutation dataset:
+
+### 1. Image-based Neural Network
+| ![Image-based Neural Network](reports/image_cnn_confusion_matrix.png) | ![Keypoint-based Neural Network](reports/keypoints_cnn_confusion_matrix.png) |
+| --- | --- |
+| **Image-based Neural Network** | **Keypoint-based Neural Network** |
+
+### 2. Keypoint-based KNN Classifier
+| ![Keypoint-based KNN Classifier](reports/keypoints_knnc_confusion_matrix.png) | ![Keypoint-based XGBoost Classifier](reports/keypoints_xgb_confusion_matrix.png) |
+| --- | --- |
+| **Keypoint-based KNN Classifier** | **Keypoint-based XGBoost Classifier** |
+
+These confusion matrices provide insight into the models' performance across the seven Sun Salutation poses.
 
 ## Dependencies
 
