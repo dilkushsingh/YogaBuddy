@@ -73,7 +73,7 @@ def practice_by_feed():
                         cap.release()
                         break
 
-def main():
+def practice():
     st.title('Practice Your Pose')
     practice_option = st.radio('Choose input option:', ["Upload Image", "Live Camera"])
 

@@ -1,3 +1,4 @@
+PAGE_TITLE = "YogaBuddy"
 
 POSES_DATA_PATH = 'data/poses_data.json'
 

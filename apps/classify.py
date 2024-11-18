@@ -50,7 +50,7 @@ def classify_by_feed():
         st.error('There is some issue with camera.')
 
 
-def main():
+def classify():
     st.title("Classify your pose")
     classify_option = st.radio("Choose input method:", ["Upload Image", "Live Camera"])
 

@@ -1,10 +1,10 @@
 import json
 import streamlit as st
-from apps.classify import main as classify
-from apps.practice import main as practice
-from constant import POSES_DATA_PATH
+from apps.classify import classify
+from apps.practice import practice
+from constant import PAGE_TITLE, POSES_DATA_PATH
 
-st.set_page_config(page_title="YogaBuddy", layout="wide")
+st.set_page_config(page_title=PAGE_TITLE, layout="wide")
 
 @st.cache_data
 def load_pose_data(file_path):
