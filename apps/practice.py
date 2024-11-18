@@ -35,8 +35,7 @@ def practice_by_image():
                 compare = st.button('Compare Pose')
                 if compare:
                     result_img = compare_pose(ideal_frame, user_frame)
-                    with col2:
-                        st.image(result_img, channels='BGR', use_column_width=True)
+                    st.image(result_img, channels='BGR', use_column_width=True)
     except:
         with col2:
             st.error('There is some issue with uploaded image. Please upload another one.')
@@ -76,7 +75,6 @@ def practice_by_feed():
 
 def main():
     st.title('Practice Your Pose')
-
     practice_option = st.radio('Choose input option:', ["Upload Image", "Live Camera"])
 
     if practice_option == "Upload Image":
