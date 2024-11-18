@@ -26,7 +26,7 @@ def practice_by_image():
         with col1:
             ideal_frame = fetch_ideal_pose()
             st.image(ideal_frame, channels='BGR', use_column_width=True)
-            st.info('Take a reference from the above image.')
+            st.info('Refer to the image above: the red points indicate incorrect angles, while the green points represent correct angles.')
 
         user_frame = None
         with col2:
@@ -47,7 +47,7 @@ def practice_by_feed():
     with col1:
         ideal_frame = fetch_ideal_pose()
         st.image(ideal_frame, channels='BGR', use_column_width=True)
-        st.info('Take a reference from the above image.')
+        st.info('Refer to the image above: the red points indicate incorrect angles, while the green points represent correct angles.')
 
     if ideal_frame is not None:
         with col2:
