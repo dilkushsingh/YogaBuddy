@@ -72,7 +72,7 @@ MediaPipe is used for real-time keypoint detection, which supports both classifi
 
 Below are the confusion matrices for the four classification models trained on the Sun Salutation dataset:
 
-| ![Image-based Neural Network](reports/image_cnn_confusion_matrix.png) | ![Keypoint-based Neural Network](reports/keypoints_cnn_confusion_matrix.png) |
+| ![Image-based Neural Network](reports/image_cnn_confusion_matrix.png) | ![Keypoint-based Neural Network](reports/keypoints_nn_confusion_matrix.png) |
 | --- | --- |
 | **Image-based Neural Network** | **Keypoint-based Neural Network** |
 
