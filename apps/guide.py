@@ -7,7 +7,6 @@ class PoseGuide:
         self.data_path = data_path
         self.pose_data = self.load_pose_data()
 
-    @st.cache_data
     def load_pose_data(self):
         try:
             with open(self.data_path, 'r') as file:
