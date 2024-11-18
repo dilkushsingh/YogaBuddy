@@ -1,37 +1,31 @@
 import cv2
-import numpy as np
 import mediapipe as mp
 import pandas as pd
 import os
 
-mp_pose = mp.solutions.pose
-pose = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.3, model_complexity=2)
-mp_drawing = mp.solutions.drawing_utils
+class PoseProcessor:
+    def __init__(self, input_path, output_path, min_detection_confidence=0.3, model_complexity=2):
+        self.input_path = input_path
+        self.output_path = output_path
+        self.min_detection_confidence = min_detection_confidence
+        self.model_complexity = model_complexity
 
-path = 'data/sun_salutation_poses/test/'
-points = mp_pose.PoseLandmark
-columns = [f"{mp_pose.PoseLandmark(point).name}_{axis}" for point in points for axis in ["x", "y", "z", "vis"]]
-columns.append('class')
-data = pd.DataFrame(columns=columns)
+        self.mp_pose = mp.solutions.pose
+        self.pose = self.mp_pose.Pose(
+            static_image_mode=True,
+            min_detection_confidence=self.min_detection_confidence,
+            model_complexity=self.model_complexity,
+        )
 
-count = 0
-for dir_name in os.listdir(path):
-    label_dir = os.path.join(path, dir_name)
-    class_label = dir_name
+        points = self.mp_pose.PoseLandmark
+        self.columns = [f"{point.name}_{axis}" for point in points for axis in ["x", "y", "z", "vis"]]
+        self.columns.append('class')
 
-    if not os.path.isdir(label_dir):
-        continue
-    
-    for img_name in os.listdir(label_dir):
-        img_path = os.path.join(label_dir, img_name)
-        
-        if not (img_name.endswith('.jpg') or img_name.endswith('.jpeg') or img_name.endswith('.png')):
-            continue
-        
+    def process_image(self, img_path, class_label):
         try:
             img = cv2.imread(img_path)
             img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            results = pose.process(img_rgb)
+            results = self.pose.process(img_rgb)
 
             if results.pose_landmarks:
                 landmarks = results.pose_landmarks.landmark
@@ -39,11 +33,42 @@ for dir_name in os.listdir(path):
                 for landmark in landmarks:
                     row.extend([landmark.x, landmark.y, landmark.z, landmark.visibility])
                 row.append(class_label)
-                data.loc[count] = row
-                count += 1
-
+                return row
         except Exception as e:
-            print(f"Error processing image {img_name} in {dir_name}: {e}")
-            continue
+            print(f"Error processing image {img_path}: {e}")
+        return None
 
-data.to_csv('data/test.csv', index=False)
+    def process_directory(self):
+        data_rows = []
+        for dir_name in os.listdir(self.input_path):
+            label_dir = os.path.join(self.input_path, dir_name)
+            class_label = dir_name
+
+            if not os.path.isdir(label_dir):
+                continue
+            print(f"Processing class: {class_label}")
+
+            for img_name in os.listdir(label_dir):
+                img_path = os.path.join(label_dir, img_name)
+                if not img_name.lower().endswith(('.jpg', '.jpeg', '.png')):
+                    continue
+
+                row = self.process_image(img_path, class_label)
+                if row:
+                    data_rows.append(row)
+        return data_rows
+
+    def save_to_csv(self, data_rows):
+        data = pd.DataFrame(data_rows, columns=self.columns)
+        data.to_csv(self.output_path, index=False)
+
+    def run(self):
+        data_rows = self.process_directory()
+        self.save_to_csv(data_rows)
+
+if __name__ == "__main__":
+    input_path = 'data/sun_salutation_poses/test/'
+    output_path = 'data/test.csv'
+
+    processor = PoseProcessor(input_path, output_path)
+    processor.run()
