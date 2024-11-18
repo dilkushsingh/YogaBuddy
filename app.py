@@ -6,8 +6,12 @@ from constant import POSES_DATA_PATH
 
 st.set_page_config(page_title="YogaBuddy", layout="wide")
 
-with open(POSES_DATA_PATH, 'r') as file:
-    pose_data = json.load(file)
+@st.cache_data
+def load_pose_data(file_path):
+    with open(file_path, 'r') as file:
+        return json.load(file)
+
+pose_data = load_pose_data(POSES_DATA_PATH)
 
 page = st.sidebar.radio("Choose a page:", ["Guide", "Classify", "Practice"])
 
