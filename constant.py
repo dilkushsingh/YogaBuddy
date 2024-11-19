@@ -15,13 +15,19 @@ NUM_COLS = 3
 
 # apps/classify.py
 CLASSIFY_TITLE = "Classify your pose"
+POSE_CLASSES = ['Ashtanga Namaskara', 'Ashwa Sanchalanasana', 'Bhujangasana', 'Hasta Uttanasana', 'Parvatasana', 'Pranamasana', 'Uttanasana']
+MODEL_PATH = 'models/xgboost_classifier.pkl'
 
 # issues
+POSES_FILE_ISSUE = "There is some issue with the Poses data file."
 UPLOAD_ISSUE = "There is some issue with the image. Please upload another one."
 POSE_NOT_DETECTED_ISSUE = "Pose not detected. There is some issue with the camera."
 CAMERA_ISSUE = "There is some issue with the camera."
 CAMERA_NOT_DETECTED_ISSUE = "Camera not detected."
 
+# apps/practice.py
+PRACTICE_TITLE = "Practice Your Pose"
+USER_MSG = "Refer to the image above: the red points indicate incorrect angles, while the green points represent correct angles."
 IDEAL_POSE_PATH = {
     "Pranamasana": "data/sun_salutation_poses/ideals/Pranamasana.jpg",
     "Hasta Uttanasana": "data/sun_salutation_poses/ideals/HastaUttanasana.jpg",
@@ -31,9 +37,8 @@ IDEAL_POSE_PATH = {
     "Ashtanga Namaskara": "data/sun_salutation_poses/ideals/AshtangaNamaskara.jpg",
     "Bhujangasana": "data/sun_salutation_poses/ideals/Bhujangasana.jpg"
 }
-
 ANGLE_THRESHOLD = 5
-DISTANCE_THRESHOLD = 0.15
 
-MODEL_PATH = 'models/xgboost_classifier.pkl'
-KERAS_MODEL_PATH = 'models/Images_CNN_model.keras'
+# train.py
+TRAIN_DIR = 'data/train.csv'
+TEST_DIR = 'data/test.csv'

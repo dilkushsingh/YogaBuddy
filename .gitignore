@@ -2,5 +2,6 @@ __pycache__
 myenv
 .DS_Store
 models/Images_CNN_model.keras
+models/Keypoints_NN_model.keras
 data/sun_salutation_poses/test
 data/sun_salutation_poses/train

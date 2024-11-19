@@ -45,6 +45,11 @@ YogaBuddy is a user-friendly assistant focused on the Sun Salutation (Surya Nama
     streamlit run app.py
     ```
 
+5. **If you want to train the model, run the following command**
+    ```bash
+    python train.py --output_dir ./output --max_depth 5 --objective 'multi:softprob'  --n_estimators 500 --learning_rate 0.35
+    ```
+
 ## Model Overview
 
 Below is a flowchart diagram of the YogaBuddy system pipeline:

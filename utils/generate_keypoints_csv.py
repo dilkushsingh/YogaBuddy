@@ -34,8 +34,8 @@ class PoseProcessor:
                     row.extend([landmark.x, landmark.y, landmark.z, landmark.visibility])
                 row.append(class_label)
                 return row
-        except Exception as e:
-            print(f"Error processing image {img_path}: {e}")
+        except:
+            print(f"Error processing image {img_path}")
         return None
 
     def process_directory(self):
@@ -62,7 +62,7 @@ class PoseProcessor:
         data = pd.DataFrame(data_rows, columns=self.columns)
         data.to_csv(self.output_path, index=False)
 
-    def run(self):
+    def generate(self):
         data_rows = self.process_directory()
         self.save_to_csv(data_rows)
 
@@ -71,4 +71,4 @@ if __name__ == "__main__":
     output_path = 'data/test.csv'
 
     processor = PoseProcessor(input_path, output_path)
-    processor.run()
+    processor.generate()

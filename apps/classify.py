@@ -1,20 +1,21 @@
 import numpy as np
 import cv2
 import streamlit as st
-from utils.pose_classification_xgboost import classify_pose
+from utils.pose_utils import Classifier
 from utils.streamlit_helpers import fetch_image
 from constant import CLASSIFY_TITLE, UPLOAD_ISSUE, POSE_NOT_DETECTED_ISSUE, CAMERA_ISSUE, CAMERA_NOT_DETECTED_ISSUE
 
 class PoseClassifier:
-    def __init__(self):
+    def __init__(self, model_path, pose_classes):
         self.cap = None 
+        self.classifier = Classifier(model_path, pose_classes)
 
     def classify_by_image(self):
         try:
             frame = fetch_image()
             if frame is not None:
                 if st.button('Detect Pose'):
-                    pose_name = classify_pose(frame)[0]
+                    pose_name = self.classifier.classify_pose(frame)[0]
                     st.write('Your current pose is:')
                     st.success(pose_name)
                     st.image(frame, channels="BGR")
@@ -40,7 +41,7 @@ class PoseClassifier:
 
                     frame = cv2.flip(frame, 1) 
                     try:
-                        pose_name = classify_pose(frame)[0]
+                        pose_name = self.classifier.classify_pose(frame)[0]
                         status.write('Your current pose is:')
                         pose_placeholder.success(pose_name)
                     except:

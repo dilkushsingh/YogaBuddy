@@ -1,6 +1,6 @@
 import json
 import streamlit as st
-from constant import GUIDE_TITLE, SUN_SALUTATION_PARA, NUM_COLS
+from constant import GUIDE_TITLE, SUN_SALUTATION_PARA, NUM_COLS, POSES_FILE_ISSUE
 
 class PoseGuide:
     def __init__(self, data_path):
@@ -12,7 +12,7 @@ class PoseGuide:
             with open(self.data_path, 'r') as file:
                 return json.load(file)
         except:
-            st.error('There is some issue with the Poses data file.')
+            st.error(POSES_FILE_ISSUE)
 
     def display_guide(self):
         st.title(GUIDE_TITLE)
