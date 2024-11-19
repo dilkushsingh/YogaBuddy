@@ -13,6 +13,15 @@ for each pose in the Sun Salutation sequence, accompanied by images for better u
 """
 NUM_COLS = 3
 
+# apps/classify.py
+CLASSIFY_TITLE = "Classify your pose"
+
+# issues
+UPLOAD_ISSUE = "There is some issue with the image. Please upload another one."
+POSE_NOT_DETECTED_ISSUE = "Pose not detected. There is some issue with the camera."
+CAMERA_ISSUE = "There is some issue with the camera."
+CAMERA_NOT_DETECTED_ISSUE = "Camera not detected."
+
 IDEAL_POSE_PATH = {
     "Pranamasana": "data/sun_salutation_poses/ideals/Pranamasana.jpg",
     "Hasta Uttanasana": "data/sun_salutation_poses/ideals/HastaUttanasana.jpg",

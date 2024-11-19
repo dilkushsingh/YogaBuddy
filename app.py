@@ -1,6 +1,6 @@
 import streamlit as st
 from apps.guide import PoseGuide
-from apps.classify import classify
+from apps.classify import PoseClassifier
 from apps.practice import practice
 from constant import PAGE_TITLE, PAGE_LAYOUT, POSES_DATA_PATH
 
@@ -11,6 +11,10 @@ page = st.sidebar.radio("Choose a page:", ["Guide", "Classify", "Practice"])
 def guide():
     guide = PoseGuide(POSES_DATA_PATH)
     guide.display_guide()
+
+def classify():
+    classify = PoseClassifier()
+    classify.display()
 
 if page == "Guide":
     guide()    

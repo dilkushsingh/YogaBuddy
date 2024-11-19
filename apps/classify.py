@@ -3,59 +3,63 @@ import cv2
 import streamlit as st
 from utils.pose_classification_xgboost import classify_pose
 from utils.streamlit_helpers import fetch_image
+from constant import CLASSIFY_TITLE, UPLOAD_ISSUE, POSE_NOT_DETECTED_ISSUE, CAMERA_ISSUE, CAMERA_NOT_DETECTED_ISSUE
 
-def classify_by_image():
-    try:
-        frame = fetch_image()
-        if frame is not None:
-            detect = st.button('Detect Pose')
-            if detect:
-                pose_name = classify_pose(frame)[0]
-                st.write('Your current pose is:')
-                st.success(pose_name)
-                st.image(frame, channels="BGR")
-    except:
-        st.error('There is some issue with image. Please upload another one.')
+class PoseClassifier:
+    def __init__(self):
+        self.cap = None 
 
-def classify_by_feed():
-    try:
-        start_camera = st.button("Start Camera", key="start")
-        stop_camera = st.button("Stop Camera", key="stop")
-
-        if start_camera and not stop_camera:
-            cap = cv2.VideoCapture(0)
-            status = st.empty()
-            pose_placeholder = st.empty()
-            st_frame = st.empty()
-
-            while cap.isOpened():
-                ret, frame = cap.read()
-                if not ret:
-                    st.write("Camera not detected.")
-                    break
-                frame = cv2.flip(frame, 1)
-                try:
+    def classify_by_image(self):
+        try:
+            frame = fetch_image()
+            if frame is not None:
+                if st.button('Detect Pose'):
                     pose_name = classify_pose(frame)[0]
-                    status.write('Your current pose is:')
-                    pose_placeholder.success(pose_name)
-                except:
-                    status.error('Pose is not detected. There is some issue with camera.')
-                    pose_placeholder.empty()            
-                st_frame.image(frame, channels="BGR")
+                    st.write('Your current pose is:')
+                    st.success(pose_name)
+                    st.image(frame, channels="BGR")
+        except:
+            st.error(UPLOAD_ISSUE)
 
-                if stop_camera:
-                    cap.release()
-                    break
-    except:
-        st.error('There is some issue with camera.')
+    def classify_by_feed(self):
+        try:
+            start_camera = st.button("Start Camera", key="start")
+            stop_camera = st.button("Stop Camera", key="stop")
 
+            if start_camera and not stop_camera:
+                self.cap = cv2.VideoCapture(0)
+                status = st.empty()
+                pose_placeholder = st.empty()
+                st_frame = st.empty()
 
-def classify():
-    st.title("Classify your pose")
-    classify_option = st.radio("Choose input method:", ["Upload Image", "Live Camera"])
+                while self.cap.isOpened():
+                    ret, frame = self.cap.read()
+                    if not ret:
+                        st.write(CAMERA_NOT_DETECTED_ISSUE)
+                        break
 
-    if classify_option == "Upload Image":
-        classify_by_image()        
+                    frame = cv2.flip(frame, 1) 
+                    try:
+                        pose_name = classify_pose(frame)[0]
+                        status.write('Your current pose is:')
+                        pose_placeholder.success(pose_name)
+                    except:
+                        status.error(POSE_NOT_DETECTED_ISSUE)
+                        pose_placeholder.empty()
 
-    elif classify_option == "Live Camera":
-        classify_by_feed()        
+                    st_frame.image(frame, channels="BGR")
+
+                    if stop_camera:
+                        self.cap.release()
+                        break
+        except:
+            st.error(CAMERA_ISSUE)
+
+    def display(self):
+        st.title(CLASSIFY_TITLE)
+        classify_option = st.radio("Choose input method:", ["Upload Image", "Live Camera"])
+
+        if classify_option == "Upload Image":
+            self.classify_by_image()
+        elif classify_option == "Live Camera":
+            self.classify_by_feed()
