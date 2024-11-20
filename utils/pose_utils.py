@@ -7,7 +7,7 @@ import math
 class Pose:
     def __init__(self):
         self.mp_pose = mp.solutions.pose
-        self.pose_detector = self.mp_pose.Pose(static_image_mode=True, model_complexity=2)
+        self.pose_detector = self.mp_pose.Pose(static_image_mode=True, model_complexity=2, model_path='models/pose_landmark_full.tflite')
         self.mp_drawing = mp.solutions.drawing_utils
 
     def detect_pose(self, frame):
