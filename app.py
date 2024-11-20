@@ -26,8 +26,7 @@ def practice():
     practice.practice()
 
 if page == "Guide":
-    with st.spinner('Loading Guide'):
-        guide()    
+    guide()    
 elif page == "Classify":
     classify() 
 else:
