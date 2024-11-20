@@ -1,6 +1,7 @@
 __pycache__
 myenv
 .DS_Store
+.env
 models/Images_CNN_model.keras
 models/Keypoints_NN_model.keras
 data/sun_salutation_poses/test

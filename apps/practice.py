@@ -7,23 +7,25 @@ from utils.pose_utils import Comparison
 from utils.streamlit_helpers import fetch_image
 
 class PosePractice:
-    def __init__(self, angle_threshold):
+    def __init__(self, angle_threshold, s3utils):
         self.cap = None  
         self.comparison = Comparison(angle_threshold)
+        self.s3utils = s3utils
 
     def fetch_ideal_pose(self):
         ideal_poses = list(IDEAL_POSE_PATH.keys())
         selected_pose = st.selectbox('Select an Ideal Pose', ideal_poses)
         ideal_pose_path = IDEAL_POSE_PATH[selected_pose]
-        ideal_pose = cv2.imread(ideal_pose_path)
-        return ideal_pose
+        return ideal_pose_path
 
     def practice_by_image(self):
         try:
             col1, col2 = st.columns(2)
             with col1:
-                ideal_frame = self.fetch_ideal_pose()
-                st.image(ideal_frame, channels='BGR', use_column_width=True)
+                ideal_frame_path = self.fetch_ideal_pose()
+                ideal_frame = self.s3utils.fetch_image(ideal_frame_path)
+                if ideal_frame is not None:
+                    st.image(ideal_frame, channels='BGR', use_column_width=True)
                 st.info(USER_MSG)
 
             user_frame = None
@@ -42,8 +44,10 @@ class PosePractice:
         col1, col2 = st.columns(2)
 
         with col1:
-            ideal_frame = self.fetch_ideal_pose()
-            st.image(ideal_frame, channels='BGR', use_column_width=True)
+            ideal_frame_path = self.fetch_ideal_pose()
+            ideal_frame = self.s3utils.fetch_image(ideal_frame_path)
+            if ideal_frame is not None:
+                st.image(ideal_frame, channels='BGR', use_column_width=True)
             st.info(USER_MSG)
 
         if ideal_frame is not None:

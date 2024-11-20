@@ -1,3 +1,4 @@
+import os
 # app.py
 PAGE_TITLE = "YogaBuddy"
 PAGE_LAYOUT = "wide"
@@ -42,3 +43,9 @@ ANGLE_THRESHOLD = 5
 # train.py
 TRAIN_DIR = 'data/train.csv'
 TEST_DIR = 'data/test.csv'
+
+# aws client
+AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY')
+AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY')
+REGION_NAME = os.getenv('REGION_NAME')
+BUCKET_NAME = os.getenv('BUCKET_NAME')

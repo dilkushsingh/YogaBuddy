@@ -11,3 +11,4 @@ Pillow==10.4.0
 xgboost==2.1.2
 streamlit==1.39.0
 joblib==1.4.2
+boto3==1.35.64

@@ -23,6 +23,12 @@ YogaBuddy is a user-friendly assistant focused on the Sun Salutation (Surya Nama
 
 ## Getting Started
 
+### Prerequisites
+
+Before you start, ensure you have an AWS S3 bucket set up to store data and configure the required credentials in a `.env` file.
+
+### Setup
+
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/dilkushsingh/YogaBuddy.git
@@ -40,14 +46,28 @@ YogaBuddy is a user-friendly assistant focused on the Sun Salutation (Surya Nama
     pip install -r requirements.txt
     ```
 
-4. **Run the Streamlit app**:
+4. **Upload required data to S3**:
+    Upload the necessary data which can be downloaded from [Kaggel Data Link](https://www.kaggle.com/datasets/dilkushsingh/yogabuddy-data) to your S3 bucket. Ensure the folder structure matches the paths referenced in the code.
+
+5. **Set up AWS credentials**:
+    Create a `.env` file in the root directory with the following keys:
+
+    ```
+    AWS_ACCESS_KEY=your_aws_access_key
+    AWS_SECRET_KEY=your_aws_secret_key
+    REGION_NAME=your_aws_region
+    BUCKET_NAME=your_s3_bucket_name
+    ```
+
+6. **Run the Streamlit app**:
     ```bash
     streamlit run app.py
     ```
 
-5. **If you want to train the model, run the following command**
+7. **(Optional) Train the model**:
+    If you wish to train the model, firstly you have to generate keypoints csv by running the ```utils/generate_keypoints_csv.py``` script. Then use the following command with your desired model parameter changes:
     ```bash
-    python train.py --output_dir ./output --max_depth 5 --objective 'multi:softprob'  --n_estimators 500 --learning_rate 0.35
+    python train.py --output_dir ./output --max_depth 5 --objective 'multi:softprob' --n_estimators 500 --learning_rate 0.35
     ```
 
 ## Model Overview
@@ -85,7 +105,7 @@ Below are the confusion matrices for the four classification models trained on t
 | --- | --- |
 | **Keypoint-based KNN Classifier** | **Keypoint-based XGBoost Classifier** |
 
-These confusion matrices provide insight into the models performance across the seven Sun Salutation poses.
+These confusion matrices provide insight into the models' performance across the seven Sun Salutation poses.
 
 ## Dependencies
 
@@ -95,7 +115,8 @@ These confusion matrices provide insight into the models performance across the 
 - **TensorFlow** - For training image-based models.
 - **XGBoost** - For real-time pose classification in the app.
 - **scikit-learn** - For KNN-based pose classification.
-- Refer to `requirements.txt` for the complete list of dependencies.
+
+Refer to `requirements.txt` for the complete list of dependencies.
 
 ## Future Enhancements
 
@@ -106,7 +127,7 @@ These confusion matrices provide insight into the models performance across the 
 
 ## Contributions
 
-Contributions are welcome to make YogaBuddy more robust and versatile.
+Contributions are welcome to make YogaBuddy more robust and versatile.  
 We encourage contributions in the following areas:
 - Adding advanced yoga poses or sequences.
 - Improving pose correction accuracy.
