@@ -1,9 +1,7 @@
 import streamlit as st
-from apps.guide import PoseGuide
-from apps.classify import PoseClassifier
-from apps.practice import PosePractice
-from constant import PAGE_TITLE, PAGE_LAYOUT, POSES_DATA_PATH, MODEL_PATH, POSE_CLASSES, ANGLE_THRESHOLD
+from apps import PoseGuide, PoseClassifier, PosePractice
 from utils.data_utils import S3Utils
+from constant import PAGE_TITLE, PAGE_LAYOUT, POSES_DATA_PATH, MODEL_PATH, POSE_CLASSES, ANGLE_THRESHOLD
 from constant import AWS_ACCESS_KEY, AWS_SECRET_KEY, REGION_NAME, BUCKET_NAME
 
 st.set_page_config(page_title=PAGE_TITLE, layout=PAGE_LAYOUT)
