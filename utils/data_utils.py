@@ -1,4 +1,3 @@
-from constant import AWS_ACCESS_KEY, AWS_SECRET_KEY, REGION_NAME, BUCKET_NAME
 import boto3
 from io import BytesIO
 import cv2
@@ -69,24 +68,3 @@ class S3Utils:
             return image
         except:
             return None
-
-if __name__ == "__main__":
-    s3_utils = S3Utils(AWS_ACCESS_KEY, AWS_SECRET_KEY, REGION_NAME, BUCKET_NAME)
-
-    uttanasana_file_key = 'data/sun_salutation_poses/ideals/Uttanasana.jpg'
-    img = s3_utils.fetch_image(uttanasana_file_key)
-    if img is not None:
-        cv2.imshow('Uttanasana Ideal Pose Image', img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-    else:
-        print("Failed to display the image.")
-
-    json_file_key = 'data/poses_data.json'
-    json_stream = s3_utils.fetch_file_content(json_file_key)
-    json_data = s3_utils.stream_to_json(json_stream)
-    if json_data is not None:
-        print("Fetched JSON Data:")
-        print(json.dumps(json_data, ensure_ascii=False, indent=4))
-    else:
-        print("Failed to fetch or parse the JSON file.")
