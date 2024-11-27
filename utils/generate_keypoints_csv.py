@@ -65,3 +65,9 @@ class PoseProcessor:
     def generate(self):
         data_rows = self.process_directory()
         self.save_to_csv(data_rows)
+
+if __name__ == "__main__":
+    input_dir = 'data/sun_salutation_poses/train/'
+    output_dir = 'data/train.csv'
+    pose_processor = PoseProcessor(input_dir, output_dir)
+    pose_processor.generate()
